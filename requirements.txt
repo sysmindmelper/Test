@@ -1,0 +1,9 @@
+ollama
+langchain-community
+langgraph
+pypdf2
+pytesseract
+pillow
+streamlit
+gradio
+python-docx
