@@ -476,19 +476,3 @@ def cleanup_session(session_mgr):
         return jsonify({'status': 'cleaned', 'session_id': session_id})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-# Error handlers
-@app.errorhandler(404)
-def not_found(error):
-    return jsonify({'error': 'Endpoint not found'}), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return jsonify({'error': 'Internal server error'}), 500
-
-# Start background cleanup thread
-cleanup_thread = threading.Thread(target=cleanup_expired_sessions, daemon=True)
-cleanup_thread.start()
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
